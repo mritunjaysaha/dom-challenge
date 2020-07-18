@@ -1,0 +1,28 @@
+/* body {
+    background-color: #f00;
+} */
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.row {
+    width: max-content;
+    background-color: #000;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+}
+.color {
+    background-color: #ff0;
+    height: 50px;
+    width: max-content;
+}
+.col {
+    width: 50px;
+    height: 50px;
+    /* margin: 1em; */
+    background-color: #f00;
+    border: 2px solid #f0f;
+}
