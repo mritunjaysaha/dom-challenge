@@ -1,43 +1,70 @@
-const Board = function (n) {
-    var root = document.getElementById("root");
-    let selectedColor;
-    for (var i = 0; i < n; i++) {
-        var row = document.createElement("div");
+function Board(el, rows, cols) {
+    this.el = document.querySelector(el);
+    this.rows = rows;
+    this.cols = cols;
+    this.activeColor = "black";
+    this.draw = false;
+
+    this.generateBoard();
+    this.addColorPanel();
+    this.bindEvents();
+}
+
+Board.prototype.generateBoard = function () {
+    const fragment = document.createDocumentFragment();
+    for (var i = 0; i < this.rows; i++) {
+        const row = document.createElement("div");
         row.classList.add("row");
-        for (var j = 0; j < n; j++) {
-            var col = document.createElement("div");
+        for (var j = 0; j < this.cols; j++) {
+            const col = document.createElement("div");
             col.classList.add("col");
+            col.dataset["cell"] = i + ":" + j;
             row.appendChild(col);
-            col.dataset["value"] = `${i}${j}`;
-            console.log(i);
-            col.addEventListener("click", (e) => {
-                e.target.style.backgroundColor = selectedColor || "#ff0000";
-            });
-            col.addEventListener("mouseover", (e) => {
-                e.target.style.backgroundColor = selectedColor || "#ff0000";
-            });
         }
-        root.appendChild(row);
+        fragment.appendChild(row);
     }
+    this.el.appendChild(fragment);
+};
 
-    var color = document.createElement("div");
-    color.classList.add("row");
-    color.classList.add("color");
+Board.prototype.addColorPanel = function () {
+    const row = document.createElement("div");
+    row.classList.add("row");
 
-    for (var i = 0; i < n; i++) {
-        var col = document.createElement("div");
+    for (var i = 0; i < this.rows; i++) {
+        const col = document.createElement("div");
+        const color = getRandomColor();
         col.classList.add("col");
-        col.classList.add("color-box");
-        col.dataset["color"] = `${i}`;
-        col.style.backgroundColor = String(getRandomColor());
-        color.appendChild(col);
-        col.addEventListener("click", (e) => {
-            selectedColor = e.target.style.backgroundColor;
-            console.log(selectedColor);
-        });
-    }
+        col.dataset["color"] = color;
+        col.style.background = color;
 
-    root.appendChild(color);
+        row.appendChild(col);
+    }
+    this.el.appendChild(row);
+};
+
+Board.prototype.bindEvents = function () {
+    this.el.addEventListener("mousedown", (e) => {
+        this.draw = true;
+        this.fill(e);
+    });
+
+    this.el.addEventListener("mouseover", (e) => {
+        this.draw && this.fill(e);
+    });
+
+    this.el.addEventListener("mouseup", (e) => {
+        this.draw = false;
+    });
+};
+Board.prototype.fill = function (e) {
+    const cell = e.target.dataset["cell"];
+    const color = e.target.dataset["color"];
+    if (color) {
+        this.activeColor = color;
+    }
+    if (cell) {
+        e.target.style.background = this.activeColor;
+    }
 };
 
 function getRandomColor() {
@@ -48,5 +75,3 @@ function getRandomColor() {
     }
     return color;
 }
-
-new Board(8);
