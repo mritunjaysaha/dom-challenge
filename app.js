@@ -1,6 +1,6 @@
 const Board = function (n) {
     var root = document.getElementById("root");
-
+    let selectedColor;
     for (var i = 0; i < n; i++) {
         var row = document.createElement("div");
         row.classList.add("row");
@@ -10,8 +10,11 @@ const Board = function (n) {
             row.appendChild(col);
             col.dataset["value"] = `${i}${j}`;
             console.log(i);
+            col.addEventListener("click", (e) => {
+                e.target.style.backgroundColor = selectedColor || "#ff0000";
+            });
             col.addEventListener("mouseover", (e) => {
-                console.log(e.target.dataset["value"]);
+                e.target.style.backgroundColor = selectedColor || "#ff0000";
             });
         }
         root.appendChild(row);
@@ -25,12 +28,12 @@ const Board = function (n) {
         var col = document.createElement("div");
         col.classList.add("col");
         col.classList.add("color-box");
-        col.dataset["value"] = `${i}${j}`;
+        col.dataset["color"] = `${i}`;
         col.style.backgroundColor = String(getRandomColor());
         color.appendChild(col);
         col.addEventListener("click", (e) => {
-            const data = e.target.dataset;
-            console.log(data);
+            selectedColor = e.target.style.backgroundColor;
+            console.log(selectedColor);
         });
     }
 
