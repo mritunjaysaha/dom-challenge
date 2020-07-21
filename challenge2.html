@@ -9,13 +9,16 @@
 </head>
 
 <body>
-    <div id="root">
-
+    <div class="size-of-board">
+        <input type="number" , placeholder="10">
+        <input type="number" , placeholder="10">
+        <button>Create Board</button>
     </div>
+    <div id="board"></div>
 
     <script src="./app.js"></script>
     <script>
-        new Board("#root", 10, 10)
+        new Board("#board", 10, 10)
     </script>
 
 </body>

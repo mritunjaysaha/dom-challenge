@@ -1,7 +1,7 @@
 /* body {
     background-color: #f00;
 } */
-#root {
+#board {
     display: flex;
     flex-direction: column;
     width: 500px;
