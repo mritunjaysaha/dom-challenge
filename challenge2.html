@@ -10,17 +10,17 @@
 
 <body>
     <div class="size-of-board">
-        <input type="number" , placeholder="10">
-        <input type="number" , placeholder="10">
-        <button>Create Board</button>
+        <input id="row-size" change="rowchange" type="number" , placeholder="10">
+        <input id="col-size" type="number" , placeholder="10">
+        <button id="set-board">Create Board</button>
     </div>
     <div id="board"></div>
 
     <script src="./app.js"></script>
-    <script>
-        new Board("#board", 10, 10)
-    </script>
+    <!-- <script>
+        new Board("#board", 10, 10);
 
+    </script> -->
 </body>
 
 </html>

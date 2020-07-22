@@ -5,6 +5,7 @@ function Board(el, rows, cols) {
     this.activeColor = "black";
     this.draw = false;
 
+    // this.getBoardSize();
     this.generateBoard();
     this.addColorPanel();
     this.bindEvents();
@@ -75,3 +76,13 @@ function getRandomColor() {
     }
     return color;
 }
+
+btn = document.getElementById("set-board");
+btn.onclick = function changeContent() {
+    console.log("here", btn);
+    const row = document.getElementById("row-size");
+    const col = document.getElementById("col-size");
+    console.log(row.value, col.value);
+
+    new Board("#board", row.value, col.value);
+};
