@@ -1,9 +1,12 @@
 function Board(el, rows = 5, cols = 5) {
     this.el = document.querySelector(el);
+    this.reset = document.querySelector("#reset");
+    console.log(this.reset);
     this.rows = rows;
     this.cols = cols;
     this.activeColor = "#000";
     this.draw = false;
+
     this.init();
     this.bindEvents();
     this.colorPanel();
@@ -52,6 +55,17 @@ Board.prototype.bindEvents = function () {
 
     this.el.addEventListener("mouseup", (e) => {
         this.draw = false;
+        e.stopPropagation();
+    });
+
+    this.reset.addEventListener("click", () => {
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                document.querySelector(
+                    `div[data-cell='${i}:${j}']`
+                ).style.background = "#fff";
+            }
+        }
     });
 };
 

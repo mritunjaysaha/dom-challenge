@@ -1,14 +1,20 @@
 body {
-    display: flex;
+    /* display: flex;
+    flex-direction: column; */
     justify-content: center;
 }
 #board {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     width: 500px;
     height: 500px;
 }
 
+#reset {
+    display: block;
+    margin: 0 auto;
+}
 .row {
     display: flex;
     flex-direction: row;
