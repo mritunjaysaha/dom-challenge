@@ -42,7 +42,7 @@ Board.prototype.bindEvents = function () {
     });
 
     document.addEventListener("click", (e) => {
-        this.activeCell && this.diagnols(this.activeCell, null);
+        this.activeCell && this.diagonals(this.activeCell, null);
     });
 };
 
