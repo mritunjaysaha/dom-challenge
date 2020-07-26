@@ -55,7 +55,6 @@ Board.prototype.bindEvents = function () {
 
     this.el.addEventListener("mouseup", (e) => {
         this.draw = false;
-        e.stopPropagation();
     });
 
     this.reset.addEventListener("click", () => {
