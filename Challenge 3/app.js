@@ -91,5 +91,3 @@ Board.prototype.diagonals = function (cell, color) {
         this.fill(i + ":" + j, color);
     }
 };
-
-new Board("#board");
