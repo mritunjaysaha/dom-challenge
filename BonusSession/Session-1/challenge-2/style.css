@@ -31,7 +31,7 @@ body {
 }
 
 .inner-wrapper > section {
-    margin: 0.9em 0;
+    margin: 0.8em 0;
 }
 
 .inner-wrapper > section:first-child {
@@ -97,7 +97,7 @@ body {
 .wf-div:first-child {
     height: 1.2em;
     width: 65%;
-    margin: 0 0 0.6em 0;
+    margin: 0.3em 0 0.6em 0;
 }
 
 .wf-div:nth-child(2) {
