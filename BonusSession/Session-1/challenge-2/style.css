@@ -1,5 +1,5 @@
 :root {
-    --bgcolor: #f00;
+    --bgcolor: #eee;
 }
 
 *,
@@ -49,10 +49,10 @@ body {
 }
 
 .logo,
-.wrapper-header-1 > .wh1-div,
+.wh1-div,
 .rect-1,
 .rect-2,
-.wrapper-footer > .wf-div {
+.wf-div {
     background: var(--bgcolor);
 }
 
@@ -84,7 +84,6 @@ body {
 .rect-2 {
     height: 16%;
     width: 100%;
-    border: 1px solid black;
 }
 
 /* footer */
@@ -125,7 +124,12 @@ body {
 
 .placeholder-skeleton {
     /* background-color: #eee; */
-    background-image: linear-gradient(90deg, #000, #e0e0e0, #000);
+    background-image: linear-gradient(
+        90deg,
+        var(--bgcolor),
+        #e0e0e0,
+        var(--bgcolor)
+    );
     background-size: 200px 100%;
     background-repeat: no-repeat;
     /* border-radius: 4px; */
