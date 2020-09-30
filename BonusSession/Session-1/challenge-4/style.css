@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main {
+    height: 4em;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.loader-container {
+    background: #ccc;
+    height: 1em;
+    width: 20em;
+}
+
+.loader-fill {
+    background: #0099ff;
+    height: 1em;
+    width: 0%;
+}
+
+.increment-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.increment-wrapper > button {
+    background: #0099ff;
+    height: 2em;
+    width: 4em;
+    color: #fafafa;
+    border: none;
+    text-align: center;
+}
