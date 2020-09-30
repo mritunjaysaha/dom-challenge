@@ -14,6 +14,9 @@ class Loader {
 
             this.loaderFilled += Number(cell);
 
+            this.loaderFilled =
+                this.loaderFilled > 100 ? 100 : this.loaderFilled;
+
             this.loader.style.width = `${this.loaderFilled}%`;
         });
     }
