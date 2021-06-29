@@ -4,14 +4,9 @@ function BinaryCalculator(res, btnContainer) {
 
     this.value = [];
     this.parsedValue = 0;
-
-    this.init();
+    this.symbol = ["+", "-", "*", "/"];
     this.bindEvents();
 }
-
-BinaryCalculator.prototype.init = function () {
-    // this.res.value = "";
-};
 
 BinaryCalculator.prototype.bindEvents = function () {
     this.btnsContainer.addEventListener("click", (event) => {
@@ -20,27 +15,33 @@ BinaryCalculator.prototype.bindEvents = function () {
         if (id === "btn0") {
             console.log("0");
             this.value.push(0);
+            this.update();
         } else if (id === "btn1") {
             console.log("1");
             this.value.push(1);
+            this.update();
         } else if (id === "btnClr") {
             console.log("clear");
-            this.clear();
+            this.reset();
         } else if (id === "btnEql") {
             console.log("equal");
             this.equal();
         } else if (id === "btnSum") {
             console.log("sum");
             this.value.push("+");
+            this.update();
         } else if (id === "btnSub") {
             console.log("sub");
             this.value.push("-");
+            this.update();
         } else if (id === "btnMul") {
             console.log("mul");
             this.value.push("*");
+            this.update();
         } else if (id === "btnDiv") {
             console.log("div");
             this.value.push("/");
+            this.update();
         }
     });
 };
@@ -56,19 +57,17 @@ BinaryCalculator.prototype.update = function () {
     console.log({ string });
 };
 
-BinaryCalculator.prototype.clear = function () {
+BinaryCalculator.prototype.reset = function () {
     this.value = [];
-
-    console.clear();
+    this.res.value = "";
 };
 
 BinaryCalculator.prototype.equal = function () {
     let arr = [];
     let str = "";
-    const symbol = ["+", "-", "*", "/"];
 
     for (let i of this.value) {
-        if (symbol.includes(i)) {
+        if (this.symbol.includes(i)) {
             arr.push(str);
             arr.push(i);
             str = "";
@@ -79,13 +78,9 @@ BinaryCalculator.prototype.equal = function () {
 
     arr.push(str);
 
-    console.log({ str, arr });
-
     let op1 = parseInt(arr[0], 2);
     let op2 = parseInt(arr[2], 2);
     let sym = arr[1];
-
-    console.log({ op1, sym, op2 });
 
     if (sym === "+") {
         this.parsedValue = op1 + op2;
@@ -97,7 +92,16 @@ BinaryCalculator.prototype.equal = function () {
         this.parsedValue = op1 / op2;
     }
 
-    console.log(this.parsedValue);
+    this.printValue();
+};
+
+BinaryCalculator.prototype.printValue = function () {
+    this.reset();
+
+    const val = this.parsedValue.toString(2);
+
+    this.res.value = val;
+    this.value.push(val);
 };
 
 new BinaryCalculator("#res", "#btns");
