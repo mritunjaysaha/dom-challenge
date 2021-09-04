@@ -1,0 +1,37 @@
+main {
+    display: grid;
+    place-items: center;
+
+    height: 100vh;
+}
+
+.progress-bar-container {
+    background-color: #eeeeee;
+
+    width: 20em;
+    height: 2em;
+}
+
+#progress-bar {
+    width: 0;
+    height: inherit;
+    background-color: #3366d6;
+}
+
+.start-animation {
+    animation: progressBar 3s linear;
+}
+
+#btn-run {
+    margin-top: 1em;
+}
+
+@keyframes progressBar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
