@@ -37,6 +37,7 @@ class ProgressBar {
                 }, 0);
             } else {
                 this.count.innerText = "";
+                this.queue = 0;
             }
         });
     }
