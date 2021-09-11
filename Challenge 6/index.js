@@ -1,14 +1,18 @@
 class Board {
-    constructor(el, startEl, scoreEl, cols = 5) {
+    constructor(el, startEl, scoreEl, highScoreEl, cols = 5) {
         this.el = document.querySelector(el);
         this.startEl = document.querySelector(startEl);
         this.scoreEl = document.querySelector(scoreEl);
+        this.highScoreEl = document.querySelector(highScoreEl);
 
         this.cols = cols;
         this.score = 0;
         this.blinkCellsArr = [];
         this.userClicks = -1;
         this.numberOfTimesClicked = 0;
+        this.highScore = 0;
+
+        console.log("highScore", typeof this.highScore);
 
         this.init();
         this.bindEvents();
@@ -16,6 +20,8 @@ class Board {
 
     init() {
         this.scoreEl.innerText = this.score;
+        this.highScore = localStorage.getItem("highScore") || 0;
+        this.highScoreEl.innerText = this.highScore;
 
         this.generateBoard();
     }
@@ -27,11 +33,6 @@ class Board {
             this.userClicks++;
             this.numberOfTimesClicked++;
 
-            console.log(
-                "user clicks",
-                this.userClicks,
-                this.blinkCellsArr[this.userClicks]
-            );
             if (this.blinkCellsArr[this.userClicks] === currentCell) {
                 console.log("true");
 
@@ -40,6 +41,7 @@ class Board {
                 this.el.classList.add("shake");
 
                 this.score = 0;
+                this.scoreEl.innerText = this.score;
                 this.blinkCellsArr = [];
                 this.userClicks = -1;
                 this.numberOfTimesClicked = 0;
@@ -95,7 +97,17 @@ class Board {
             this.score++;
             this.scoreEl.innerText = this.score;
 
+            this.updateHighScore();
             this.startBlink();
+        }
+    }
+
+    updateHighScore() {
+        if (this.score > this.highScore) {
+            localStorage.setItem("highScore", this.score);
+            console.log("updated high score");
+
+            this.highScoreEl.innerText = this.score;
         }
     }
 
@@ -129,4 +141,4 @@ class Board {
     }
 }
 
-new Board("#board", "#start", "#score");
+new Board("#board", "#start", "#score", "#high-score");
