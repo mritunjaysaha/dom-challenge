@@ -2,6 +2,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section {
+    width: max-content;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    margin-bottom: 1rem;
 }
 
 #board {
@@ -16,12 +30,6 @@ body {
     margin: 1rem auto;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-}
-
 .col {
     flex: 1;
     border: 1px solid #aaa;
@@ -31,6 +39,12 @@ body {
 .shake {
     animation: shake 0.8s infinite;
     transform: translate3d(0, 0, 0);
+}
+
+.blink {
+    animation: blink 0.8s linear;
+
+    animation-delay: 0.2s;
 }
 
 @keyframes shake {
@@ -50,5 +64,17 @@ body {
     80%,
     100% {
         transform: translateX(8px);
+    }
+}
+
+@keyframes blink {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: blue;
+    }
+    100% {
+        background-color: white;
     }
 }

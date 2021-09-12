@@ -56,6 +56,7 @@ class Board {
                     wrongCell.style.background = "white";
 
                     this.el.classList.remove("shake");
+                    this.startEl.disabled = false;
                 }, 800);
             }
         });
@@ -63,6 +64,7 @@ class Board {
         this.startEl.addEventListener("click", () => {
             console.log("clicked");
             this.startBlink();
+            this.startEl.disabled = true;
         });
     }
 
@@ -133,11 +135,20 @@ class Board {
 
         const blinkCell = document.querySelector(`div[data-cell='${cell}']`);
 
-        blinkCell.style.background = "blue";
+        // setTimeout(() => {
+        //     console.log("delay");
+        //     blinkCell.style.background = "blue";
+        // }, 0);
+
+        blinkCell.classList.add("blink");
 
         setTimeout(() => {
-            blinkCell.style.background = "white";
+            blinkCell.classList.remove("blink");
         }, 800);
+
+        // setTimeout(() => {
+        //     console.log("delay");
+        // }, 800);
     }
 }
 
