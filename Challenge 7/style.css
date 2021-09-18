@@ -48,13 +48,26 @@ body {
 }
 
 .event-container {
+    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 0;
+}
+
+.event-details-placeholder {
+    position: relative;
+    border-bottom: 1px solid red;
+    height: var(--height);
+    z-index: 0;
+}
+.event-details-container {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    /* border-bottom: 1px solid red; */
+    z-index: 100;
 }
 
 .event-content {
-    position: relative;
-    height: var(--height);
-
-    border-bottom: 1px solid red;
 }
