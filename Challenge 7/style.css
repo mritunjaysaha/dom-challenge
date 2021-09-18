@@ -26,6 +26,8 @@ body {
     display: flex;
 
     border: 1px solid #eaeaea;
+
+    overflow-y: scroll;
 }
 
 .time-container {
@@ -54,20 +56,17 @@ body {
     z-index: 0;
 }
 
-.event-details-placeholder {
-    position: relative;
-    border-bottom: 1px solid red;
-    height: var(--height);
-    z-index: 0;
-}
 .event-details-container {
-    position: absolute;
-    top: 0;
+    position: relative;
 
+    border-radius: 5px;
     width: 100%;
-    /* border-bottom: 1px solid red; */
     z-index: 100;
 }
 
 .event-content {
+    position: relative;
+    border-bottom: 1px solid red;
+    height: var(--height);
+    z-index: 0;
 }

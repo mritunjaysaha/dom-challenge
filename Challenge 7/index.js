@@ -45,13 +45,9 @@ function Calendar(timeEl, eventEl) {
         generateTime();
         generateEvents();
 
-        // data.map(({ startTime, endTime, color, title }) =>
-        //     addData({ startTime, endTime, color, title })
-        // );
-
-        addData(data[0]);
-        // addData(data[1]);
-        // addData(data[2]);
+        data.map(({ startTime, endTime, color, title }) =>
+            addData({ startTime, endTime, color, title })
+        );
     }
 
     function generateTime(fragment) {
@@ -82,26 +78,13 @@ function Calendar(timeEl, eventEl) {
         const eventDiv = document.createElement("div");
         eventDiv.classList.add("event-content");
 
-        const eventDetailsDiv = document.createElement("div");
-        eventDetailsDiv.classList.add("event-details-container");
-
-        const eventPlaceholderDiv = document.createElement("div");
-        eventPlaceholderDiv.classList.add("event-details-placeholder");
-
         for (let i = 0; i < 24; i++) {
             const eventNode = eventDiv.cloneNode();
-            const eventDetailsNode = eventDetailsDiv.cloneNode();
-            const eventPlaceholderNode = eventPlaceholderDiv.cloneNode();
 
             eventNode.dataset["time"] = `${i}`;
 
-            eventNode.appendChild(eventDetailsNode);
-            eventNode.appendChild(eventPlaceholderNode);
             fragmentNode.appendChild(eventNode);
         }
-
-        console.log(fragmentNode);
-        console.log("events");
 
         eventEl.appendChild(fragmentNode);
     }
@@ -115,17 +98,18 @@ function Calendar(timeEl, eventEl) {
         const min = Math.abs(end.min - start.min);
         const duration = hour + min / 60;
         const totalHeight = HEIGHT * duration;
+        const fromTop = (start.min / 60) * HEIGHT;
 
-        console.log({ duration });
-        console.log(totalHeight);
-
-        const eventDetailsContainer = document.querySelector(
+        const container = document.querySelector(
             `div[data-time='${start.hour}']`
-        ).childNodes[0];
-        console.log(eventDetailsContainer);
+        );
+
+        const eventDetailsContainer = document.createElement("div");
+        eventDetailsContainer.classList.add("event-details-container");
 
         eventDetailsContainer.style.backgroundColor = color;
         eventDetailsContainer.style.height = `${totalHeight}px`;
+        eventDetailsContainer.style.top = `${fromTop}px`;
 
         const detailsEl = document.createElement("div");
         detailsEl.classList.add("event-details");
@@ -140,6 +124,8 @@ function Calendar(timeEl, eventEl) {
         fragmentEl.appendChild(timeEl);
 
         eventDetailsContainer.appendChild(fragmentEl);
+
+        container.appendChild(eventDetailsContainer);
     }
 
     function getTime(time) {
